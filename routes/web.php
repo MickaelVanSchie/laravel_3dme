@@ -36,11 +36,17 @@ Route::get('/kleuren', function () {
 });
 
 Route::get('/print_service', function () {
+    return view('realiseer_uw_idee', ["g" => new g(), 'ab_test' => false]);
 })->name('main.print_service');
 
 Route::get('/contact', function () {
     return view('contact', ["g" => new g()]);
 })->name('main.contact');
+
+Route::get('/offerte-aanvragen', function () {
+    return "hi";
+})->name('main.quotation');
+
 
 class mat
 {

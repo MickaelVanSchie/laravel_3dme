@@ -1,0 +1,60 @@
+.top-box .row {
+    max-height: 100%;
+}
+
+.abs-img {
+}
+
+.min-height {
+    min-height: 400px;
+}
+
+.abs-img img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    min-height: 400px;
+}
+
+.bg-darker {
+    background: #222222;
+}
+
+.text-gray {
+    color: #bbbbbb;
+}
+
+.spacer {
+    height: 100px;
+}
+
+.card {
+    transition: ease-in-out 0.2s;
+}
+
+.card-body {
+    min-height: 150px;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card-img img {
+    width: 100%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+@media (max-width: 900px) {
+    .spacer {
+        height: 0;
+    }
+}
+
+@media (max-width: 1000px) {
+    .card-body {
+        min-height: 250px;
+    }
+}
