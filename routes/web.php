@@ -46,4 +46,5 @@ class review {
 }
 
 // other routes
-require __DIR__ . '/user/account.php';
+//require __DIR__ . '/user/account.php';
+require __DIR__ . '/products.php';
