@@ -2,21 +2,20 @@
 
 namespace App\View\Components;
 
-use App\Models\Review;
+use App\Models\MainCategory;
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
-class ReviewCard extends Component
+class CategoryType extends Component
 {
-    public Review $review;
-
     /**
      * Create a new component instance.
      */
-    public function __construct(Review $review)
+    public MainCategory $mainCategory;
+    public function __construct(MainCategory $mainCategory)
     {
-        $this->review = $review;
+        $this->mainCategory = $mainCategory;
     }
 
     /**
@@ -24,6 +23,6 @@ class ReviewCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.review-card');
+        return view('components.category-type');
     }
 }

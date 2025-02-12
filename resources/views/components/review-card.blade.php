@@ -3,15 +3,15 @@
          style='min-height: 350px; display: flex; flex-direction: column; box-shadow: 0 0 12px #444'>
         <div class='template-demo'>
             <h3 class='card-title text-left h4'><i class='fas fa-quote-left testimonail-quote'></i>
-                {{$title}}</h3>
-            <p>{{$text}}</p>
+                {{$review->title}}</h3>
+            <p>{{$review->text}}</p>
         </div>
         <div class='text-center' style='margin-top: auto;'>
-            @for($i = 0; $i < $stars; $i++)
+            @for($i = 0; $i < $review->stars; $i++)
                 <i class="fas fa-star" style="font-size: 1rem; color: #FFD700;"></i>
             @endfor
             <div class='col-12'>
-                <p>{{$author}}</p>
+                <p>{{$review->author}}</p>
             </div>
         </div>
     </div>
