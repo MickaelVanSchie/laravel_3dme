@@ -15,7 +15,9 @@
                         src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
                 <div class="items">
                     @foreach($reviews as $review)
-                        @testimonial($review->title, $review->text, $review->starnum, $review->author)
+                        <x-ReviewCard title="{{$review->title}}" text="{{$review->text}}" stars="{{$review->stars}}" author="{{$review->author}}">
+
+                        </x-ReviewCard>
                     @endforeach
                 </div>
                 <div class="col-12">

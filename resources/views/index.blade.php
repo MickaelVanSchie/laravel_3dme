@@ -21,10 +21,10 @@
                 </div>
                 <div class="col-12">
                     <div class="text-center">
-                        <a href="{{ route('print_service') }}">
+                        <a href="{{ route('main.print_service') }}">
                             <div class="btn btn-primary p-3 m-2">Realiseer uw idee</div>
                         </a>
-                        <a href="{{ route('contact') }}">
+                        <a href="{{ route('main.contact') }}">
                             <div class="btn btn-primary p-3 m-2">Direct contact opnemen</div>
                         </a>
                     </div>

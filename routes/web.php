@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $g = new g();
-    $g->create_user();
 
     $all_slogans = [
         "Innovatief en persoonlijk: onze 3D-printing service brengt jouw ideeën tot leven!",
@@ -16,16 +14,11 @@ Route::get('/', function () {
         "Jouw creativiteit, onze 3D-printing: een perfecte match!",
         "Breng je ideeën tot leven met onze 3D-printing service!"
     ];
-    $reviews = [
-        new review()
-    ];
 
-    return view('index', ['g' => $g, 'slogan' => $all_slogans[array_rand($all_slogans, 1)], 'reviews' => $reviews]);
-});
+    return view('index', ['g' => new g(), 'slogan' => $all_slogans[array_rand($all_slogans, 1)], 'reviews' => \App\Models\Review::all()]);
+})->name('main.home');
 
 Route::get('/kleuren', function () {
-    $g = new g();
-    $g->create_user();
     $pla = [
         new mat('Zwart', 'black'),
         new mat('Blauw', 'blue'),
@@ -39,20 +32,23 @@ Route::get('/kleuren', function () {
         new mat('Wit', 'white'),
         new mat('Geel', 'yellow'),
     ];
-    return view('colors', ['g' => $g, 'pla' => $pla]);
+    return view('colors', ['g' => new g(), 'pla' => $pla]);
 });
 
 Route::get('/print_service', function () {
-})->name('print_service');
+})->name('main.print_service');
+
 Route::get('/contact', function () {
-})->name('contact');
+    return view('contact', ["g" => new g()]);
+})->name('main.contact');
 
 class mat
 {
     public string $color;
     public string $material;
 
-    public function __construct(string $color, string $material) {
+    public function __construct(string $color, string $material)
+    {
         $this->color = $color;
         $this->material = $material;
     }
@@ -63,7 +59,7 @@ class g
 
     public $user = null;
 
-    public function create_user()
+    public function __construct()
     {
         $this->user = new User();
     }
@@ -74,13 +70,6 @@ class user
     public int $admin_level = 1;
 }
 
-class review
-{
-    public int $starnum = 4;
-    public string $title = "Some Title";
-    public string $text = "Some epic text";
-    public string $author = "Some author";
-}
 
 // other routes
 //require __DIR__ . '/user/account.php';
