@@ -34,10 +34,12 @@
         <div class="triangle-divider bg-white">
         </div>
     </div>
-@show
-@include('modules.the_process')
-@include('modules.gallery_showcase')
-@include('modules.testimonials')
+    @include('modules.choose_us')
+    @include('modules.the_process')
+    @include('modules.gallery_showcase')
+    @include('modules.testimonials')
+@endsection
+
 {{--@include('modules.homepage_blog')--}}
 
 
