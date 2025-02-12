@@ -1,0 +1,11 @@
+#admin-sidebar {
+    position: fixed;
+    z-index: 100;
+    bottom: 10%;
+    background: blue;
+    padding: 5px;
+}
+
+#admin-sidebar a {
+    color: white;
+}

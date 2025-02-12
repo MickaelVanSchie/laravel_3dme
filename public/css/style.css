@@ -1,0 +1,295 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.cky-btn-revisit-wrapper {
+    background: none !important;
+}
+
+#navigation {
+    padding: 10px;
+    z-index: 5;
+    color: #fff;
+}
+
+.nav-item {
+    padding: 0 0.5rem;
+}
+
+.nav-item a {
+    color: #fff;
+}
+
+.nav-item i {
+    font-size: 1rem;
+}
+
+.color-3dme {
+    color: #619eff !important;
+}
+
+.color-3dme a {
+    color: #619eff;
+}
+
+.navigation-shadow {
+    box-shadow: 0 5px 15px #555;
+}
+
+.header_element, #navigation {
+    transition: ease-in-out 0.1s;
+}
+
+.header_element a:hover {
+    text-decoration: none;
+}
+
+.bg-white {
+    background: #fff;
+}
+
+.bg-gray {
+    background: #eee;
+}
+
+.index-image {
+    min-height: 60vh;
+
+}
+
+.banner-image {
+    height: 20vh;
+}
+
+.index-image, .banner-image {
+    padding: 0;
+    background: url('../img/nw/header_png2.webp') no-repeat center;
+    background-size: cover;
+}
+
+.index-image .slogan {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.index-image .text-shadow {
+    text-shadow: 0 0 20px #000;
+}
+
+.triangle-divider, .triangle-divider-r, .triangle-divider-foot {
+    height: 5vw;
+    width: 100%;
+}
+
+.triangle-divider {
+    position: absolute;
+    bottom: -1px;
+    clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+}
+
+.triangle-divider-r {
+    margin-top: -1px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+}
+
+.triangle-divider-foot {
+    clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+    margin-bottom: -3px;
+}
+
+.container1 {
+    background: url('../img/bg2.webp');
+}
+
+.container3 {
+    background: url('../img/nw/bg2.webp');
+}
+
+.container1, .container3 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    color: #FFFFFF;
+}
+
+.container1-title {
+    font-weight: bold;
+}
+
+.container4 img {
+    width: 100%;
+}
+
+.fluid-bg {
+    background: url("../img/bg.jpg");
+    height: calc(100vh - 113px);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container4 .gallery-label {
+    background: rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding: 4px 40px;;
+    margin: -60px 0 30px 0;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.nav-logo {
+    font-weight: bold;
+}
+
+.lightblue {
+    color: #619eff;
+}
+
+.bg-lightblue {
+    background-color: #619eff;
+}
+
+.gray {
+    color: #888888;
+}
+
+.blog-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fas {
+    font-size: 5em;
+}
+
+.material_choice_icon {
+    font-size: 1em;
+}
+
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar .nav-item {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    color: #AAAAAA;
+}
+
+.msg_box {
+    display: none;
+}
+
+.html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: calc(-205px - 5vw); /* 205 = footer height 208 - 3px of margin */
+}
+
+.footer {
+    min-height: 208px;
+}
+
+.push {
+    height: calc(208px + 5vw);
+}
+
+.thanks {
+    max-width: 70%;
+}
+
+.fa-bars {
+    font-size: 1.5rem;
+    color: white;
+}
+
+html, body {
+    height: 100%;
+}
+
+.catalog-price-tag {
+    font-size: 0.8em;
+    color: #666666;
+}
+
+.catalog-img {
+    width: 100%;
+}
+
+.product-page-product-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.product-page-image {
+    width: 100%;
+}
+
+.product-page-number-input {
+    padding-right: 0;
+}
+
+.basket-product-img {
+    width: 100%;
+}
+
+.basket-shopping-cart {
+    font-size: 6em !important;
+}
+
+.display-none {
+    display: none;
+}
+
+.index-socials {
+    font-size: 3em;
+}
+
+.index-socials a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.index-socials a:hover {
+    color: #444;
+}
+
+.filament_card img {
+    width: 100%;
+}
+
+.filament_card {
+    text-align: center;
+}
+
+.article img {
+    max-width: 100%
+}
+
+/* Product details */
+.swiper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.swiper-wrapper {
+    width: 100%;
+}
+
+.swiper-image {
+    height: 100%;
+    display: block;
+    margin: auto;
+}
+
+.swiper-slide {
+    height: 100% !important;
+}
