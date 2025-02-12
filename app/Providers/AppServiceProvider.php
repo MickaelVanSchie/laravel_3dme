@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\FilamentCard;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,10 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::directive('img_url', function ($img_num, $img_size) {
-            return asset('img/' . $img_num . '-' . $img_size . '.webp');
-        });
-
+//        Blade::component('filament-card', FilamentCard::class);
         // todo: Deze directive fixen
         Blade::directive('img_tag', function ($expression) {
             list($caption, $number) = explode(',', str_replace(['(', ')', ' ', "'"], '', $expression));

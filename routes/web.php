@@ -23,22 +23,59 @@ Route::get('/', function () {
     return view('index', ['g' => $g, 'slogan' => $all_slogans[array_rand($all_slogans, 1)], 'reviews' => $reviews]);
 });
 
-Route::get('/print_service', function () {})->name('print_service');
-Route::get('/contact', function () {})->name('contact');
+Route::get('/kleuren', function () {
+    $g = new g();
+    $g->create_user();
+    $pla = [
+        new mat('Zwart', 'black'),
+        new mat('Blauw', 'blue'),
+        new mat('Groen', 'green'),
+        new mat('Grijs', 'gray'),
+        new mat('Natuurlijk', 'natural'),
+        new mat('Oranje', 'orange'),
+        new mat('Paars', 'purple'),
+        new mat('Rood', 'red'),
+        new mat('Groenblauw', 'teal'),
+        new mat('Wit', 'white'),
+        new mat('Geel', 'yellow'),
+    ];
+    return view('colors', ['g' => $g, 'pla' => $pla]);
+});
 
-class g {
+Route::get('/print_service', function () {
+})->name('print_service');
+Route::get('/contact', function () {
+})->name('contact');
+
+class mat
+{
+    public string $color;
+    public string $material;
+
+    public function __construct(string $color, string $material) {
+        $this->color = $color;
+        $this->material = $material;
+    }
+}
+
+class g
+{
 
     public $user = null;
-    public function create_user() {
+
+    public function create_user()
+    {
         $this->user = new User();
     }
 }
 
-class user {
+class user
+{
     public int $admin_level = 1;
 }
 
-class review {
+class review
+{
     public int $starnum = 4;
     public string $title = "Some Title";
     public string $text = "Some epic text";
