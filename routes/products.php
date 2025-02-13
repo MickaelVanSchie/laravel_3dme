@@ -1,21 +1,21 @@
 <?php
 
-use App\Models\MainCategory;
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ProductDetailController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use \App\Models\Product;
 
 Route::group(
     [], function () {
-    Route::get('catalogus', function () {
-        $g = '';
-        $products = \App\Models\Product::all();
-        $main_categories = MainCategory::all();
-        $product_categories = \App\Models\ProductCategory::all();
-        return view('catalog', ['g' => $g, 'products' => $products, 'main_categories' => $main_categories, 'product_categories' => $product_categories]);
-    })->name('products.catalog');
 
-    Route::get('product/{id}', function ($id) {
+    // Catalog
+    Route::get('catalogus', [CatalogController::class, 'show'])->name('products.catalog');
+    // Product details
+    Route::get('product/{id}', [ProductDetailController::class, 'show'])->name('products.details');
+
+    Route::get('products/{id}/add_to_basket/{$quantity}', function ($id, $quantity) {
         $product = Product::findOrFail($id);
-        return view('product_details', ['g' => new g(), 'product' => $product]);
-    })->name('products.details');
+
+        return view('add_to_basket', ['g' => new g(), 'product' => $product]);
+    })->name('products.add_to_basket');
 });

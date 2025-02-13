@@ -15,9 +15,7 @@
                         src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
                 <div class="items">
                     @foreach($reviews as $review)
-                        <x-ReviewCard :review="$review">
-
-                        </x-ReviewCard>
+                        <x-ReviewCard :review="$review"></x-ReviewCard>
                     @endforeach
                 </div>
                 <div class="col-12">

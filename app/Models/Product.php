@@ -9,15 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function variants(): array {
-
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class);
     }
 
-    public function stock_txt(): string {
-
-    }
-
-    public function category() {
-        return $this->hasOne(ProductCategory::class);
+    public function images() {
+        return $this->hasMany(ProductImage::class);
     }
 }
