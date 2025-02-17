@@ -27,7 +27,7 @@ class productFactory extends Factory
             'production_price' => fake()->randomNumber(2),
             'minimum_selling_price' => fake()->randomNumber(2),
             'stock' => fake()->randomNumber(2),
-            'shipment_type' => fake()->text(),
+            'shipment_type' => fake()->randomElement(["parcel", "mailbox"]),
             'image' => fake()->url(),
             'active' => fake()->boolean(),
             'variants' => '',
