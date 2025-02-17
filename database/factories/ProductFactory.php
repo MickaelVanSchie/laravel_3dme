@@ -19,7 +19,7 @@ class productFactory extends Factory
     {
         $categoryIds = ProductCategory::pluck('id')->toArray();
         return [
-            'url' => fake()->filePath(),
+            'url' => fake()->slug(),
             'name' => fake()->text(15),
             'description' => fake()->paragraph(),
             'category_id' => fake()->randomElement($categoryIds),

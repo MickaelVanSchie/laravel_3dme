@@ -11,7 +11,7 @@ Route::group(
     // Catalog
     Route::get('catalogus', [CatalogController::class, 'show'])->name('products.catalog');
     // Product details
-    Route::get('product/{id}', [ProductDetailController::class, 'show'])->name('products.details');
+    Route::get('product/{url}', [ProductDetailController::class, 'show'])->name('products.details');
 
     Route::get('products/{id}/add_to_basket/{$quantity}', function ($id, $quantity) {
         $product = Product::findOrFail($id);

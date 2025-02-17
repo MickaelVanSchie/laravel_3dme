@@ -49,29 +49,28 @@
                         <p class="text-secondary">{{ $product->price }} incl. BTW.</p> {{--Price --}}
                         <p>{{ $product->stock_txt }}</p>
                         {% if product.variants %}
-                        @foreach($product->variants as $variant)
-
+                        @foreach($product->variantsArray() as $variant)
+                            {{ $variant->name }}
+                            @if($variant->type == "text")
+                                <input type="text" name="variant_{{ $variant->name }}"
+                                       id="variant_{{ $variant->name }}" class="form-control variant-selection"
+                                       data-variant="{{ $variant->name }}" maxlength="10"
+                                       {% if variant.name in preset_keys %}value="{{ default_selection[variant.name] }}"
+                                       {%
+                                       endif %}>
+                            @else
+                                <select name="variant_{{ $variant->name }}" id="variant_{{ $variant->name }}"
+                                        class="form-control variant-selection"
+                                        data-variant="{{ $variant->name }}">
+                                    {% for value in variant["values"] %}
+                                    <option value="{{ value | capitalize }}"
+                                            {% if variant.name in preset_keys and default_selection[variant.name]==
+                                            value
+                                            %}selected{% endif %}>{{ value | capitalize }}</option>
+                                    {% endfor %}
+                                </select>
+                            @endif
                         @endforeach
-                        {% for variant in product.variants_dict %}
-                        {{ variant.name | capitalize }}
-                        {% if variant.type == "text" %}
-                        <input type="text" name="variant_{{ variant.name }}"
-                               id="variant_{{ variant.name }}" class="form-control variant-selection"
-                               data-variant="{{ variant.name }}" maxlength="10"
-                               {% if variant.name in preset_keys %}value="{{ default_selection[variant.name] }}" {%
-                               endif %}>
-                        {% else %}
-                        <select name="variant_{{ variant.name }}" id="variant_{{ variant.name }}"
-                                class="form-control variant-selection"
-                                data-variant="{{ variant.name }}">
-                            {% for value in variant["values"] %}
-                            <option value="{{ value | capitalize }}"
-                                    {% if variant.name in preset_keys and default_selection[variant.name]== value
-                                    %}selected{% endif %}>{{ value | capitalize }}</option>
-                            {% endfor %}
-                        </select>
-                        {% endif %}
-                        {% endfor %}
                         {% endif %}
                         <div class="row pt-3">
                             <div class="col-md-3">
