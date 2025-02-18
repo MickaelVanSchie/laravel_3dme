@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 @endsection
 
-{% block page_content %}
+@section('page_content')
 <div class="banner-image position-relative">
     <div class="triangle-divider bg-white"></div>
 </div>
@@ -48,7 +48,7 @@
                         <p class="product-page-product-title">{{ $product->name }}</p>
                         <p class="text-secondary">{{ $product->price }} incl. BTW.</p> {{--Price --}}
                         <p>{{ $product->stock_txt }}</p>
-                        {% if product.variants %}
+                        {% if $product->variants %}
                         @foreach($product->variantsArray() as $variant)
                             {{ $variant->name }}
                             @if($variant->type == "text")
@@ -124,7 +124,7 @@
     </div>
 </div>
 <script>
-    const imageCount = {{ product.images | length }};
+    const imageCount = {{ $product->images | length }};
     let swiperConfig = {
         direction: 'horizontal',
         loop: true,
@@ -176,4 +176,4 @@
     )
     ;
 </script>
-{% endblock %}
+@endsection
