@@ -13,6 +13,8 @@ class ProductDetailController extends Controller
     public function show($url): View
     {
         $product = Product::where('url', $url)->firstOrFail();
-        return view('product_details', ['g' => new g(), 'product' => $product]);
+        // todo: presset keys
+        // todo: default value
+        return view('product_details', ['g' => new g(), 'product' => $product, 'preset_keys' => "", 'default_selection' => ""]);
     }
 }

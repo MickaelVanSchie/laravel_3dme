@@ -55,19 +55,18 @@
                                 <input type="text" name="variant_{{ $variant->name }}"
                                        id="variant_{{ $variant->name }}" class="form-control variant-selection"
                                        data-variant="{{ $variant->name }}" maxlength="10"
-                                       {% if variant.name in preset_keys %}value="{{ default_selection[variant.name] }}"
-                                       {%
-                                       endif %}>
+                                       @if($variant->name in $preset_keys)value=""{{$default_selection[$variant->name]}"
+                                       @endif>
                             @else
                                 <select name="variant_{{ $variant->name }}" id="variant_{{ $variant->name }}"
                                         class="form-control variant-selection"
                                         data-variant="{{ $variant->name }}">
-                                    {% for value in variant["values"] %}
-                                    <option value="{{ value | capitalize }}"
-                                            {% if variant.name in preset_keys and default_selection[variant.name]==
-                                            value
-                                            %}selected{% endif %}>{{ value | capitalize }}</option>
-                                    {% endfor %}
+                                        @foreach($variant->value as $value)
+                                    <option value="{{ value }}"
+                                        @if($variant->name in $preset_keys && default_selection[$variant->name] == $value)
+                                            selected
+                                            @endif>{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             @endif
                         @endforeach
@@ -79,7 +78,7 @@
                             </div>
                             <div class="col-md-9 pt-2">
                                 <div
-                                    class="btn btn-primary add-to-basket {% if product.stock == 0 %}disabled{% endif %}"
+                                    class="btn btn-primary add-to-basket @if($product->stock == 0)disabled@endif"
                                     id="add-to-basket">
                                     Toevoegen aan winkelmand
                                 </div>
@@ -89,7 +88,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <p>{{ product.description|safe }}</p>
+                        <p>{{ $product->description }}</p>
                     </div>
                 </div>
             </div>
@@ -98,7 +97,6 @@
                     <h3>Gerelateerde producten</h3>
                     <div class="row">
                         @foreach($product->related_products as $rp)
-                            {% for product in related_products %}
                             <div class="col-md-4 col-12">
                                 <a href="{{ route('main.product', $rp->id) }}"
                                    class="text-decoration-none">

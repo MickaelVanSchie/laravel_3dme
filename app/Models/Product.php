@@ -38,7 +38,7 @@ class Product extends Model
     public function variantsArray(): array
     {
         // Todo: Implement this properly. Let's return a empty array for now.
-        return [new variant("Test")];
+        return [new variant("Test", "text", [])];
 //        try {
 //            return json_decode($this->variants);
 //        } catch(Exception $e) {
@@ -51,8 +51,11 @@ class Product extends Model
 class variant
 {
     public string $name;
-    public function __construct(string $name)
+    public function __construct(string $name, string $type, array $values, integer $max_characters = 10)
     {
         $this->name = $name;
+        $this->type= $type;
+        $this->values = $values; // list of strings
+        $this->max_characters = $max_characters
     }
 }
