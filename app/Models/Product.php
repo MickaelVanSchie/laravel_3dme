@@ -24,6 +24,17 @@ class Product extends Model
         return $this->images()->first()->url;
     }
 
+    public function stockText()
+    {
+        if ($this->stock == -1) {
+            return "Productie op aanvraag";
+        } else if ($this->stock == 0) {
+            return "Niet op voorraad"
+        } else {
+            return "${this->stock} producten op voorraad"
+        }
+    }
+
     public function shippingCostCents(string $countryCode = null)
     {
         if (!in_array($countryCode, ["NL", "BE", "DE"])) {
@@ -51,11 +62,11 @@ class Product extends Model
 class variant
 {
     public string $name;
-    public function __construct(string $name, string $type, array $values, integer $max_characters = 10)
+    public function __construct(string $name, string $type, array $values, int $max_characters = 10)
     {
         $this->name = $name;
         $this->type= $type;
         $this->values = $values; // list of strings
-        $this->max_characters = $max_characters
+        $this->max_characters = $max_characters;
     }
 }
