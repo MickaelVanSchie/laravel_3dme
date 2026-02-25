@@ -12,6 +12,4 @@ Route::group(
     Route::get('catalogus', [CatalogController::class, 'show'])->name('products.catalog');
     // Product details
     Route::get('product/{url}', [ProductDetailController::class, 'show'])->name('products.details');
-
-    Route::post('products/{id}/add-to-basket/{quantity}', [AddToBasketController::class, 'store'])->name('products.add_to_basket.store');
 });

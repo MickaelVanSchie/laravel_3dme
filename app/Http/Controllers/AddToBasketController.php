@@ -9,11 +9,6 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 class AddToBasketController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('web');
-    }
-
     public function store(Request $request): JsonResponse
     {
         if (!$request->hasValidSignature() && !$request->header('X-CSRF-TOKEN')) {
@@ -38,6 +33,6 @@ class AddToBasketController extends Controller
 
         Session::put('basket', $basket);
 
-        return response()->json(['status' => 'ok']);
+        return response()->json(['msg' => 'ok']);
     }
 }
