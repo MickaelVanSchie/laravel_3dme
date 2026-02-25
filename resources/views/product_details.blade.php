@@ -80,7 +80,7 @@
                                         @if($product->stock == 0)
                                             class="btn btn-primary add-to-basket disabled"
                                         @else
-                                            class="btn btn-primary add-to-basket disabled"
+                                            class="btn btn-primary add-to-basket"
                                         @endif
                                         id="add-to-basket">
                                         Toevoegen aan winkelmand
@@ -148,35 +148,37 @@
 
         const swiper = new Swiper('.swiper', swiperConfig)
 
-        $('.add-to-basket').on('click', function () {
+        let addToBasketButton = document.getElementById('add-to-basket');
 
-                let variants = [];
-                let variantInputs = document.getElementsByClassName('variant-selection');
-                Array.from(variantInputs).forEach((variantInput) => {
-                    let variantName = variantInput.dataset.variant;
-                    let value = variantInput.value;
-                    variants.push({"name": variantName, "value": value});
-                });
+        addToBasketButton.addEventListener('click', function () {
+            let variants = [];
+            let variantInputs = document.getElementsByClassName('variant-selection');
+            Array.from(variantInputs).forEach((variantInput) => {
+                let variantName = variantInput.dataset.variant;
+                let value = variantInput.value;
+                variants.push({"name": variantName, "value": value});
+            });
 
-                let _data = JSON.stringify({
-                    'product_id': {{$product->id}},
-                    'quantity': $('.product-page-number-input').val(),
-                    'variants': variants
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: '/add_to_basket',
-                    contentType: 'application/json',
-                    data: _data,
-                    dataType: 'json',
-                    success: function (e) {
-                        if (e['msg'] === 'ok') {
-                            location.href = '/winkelmand'
-                        }
+            let _data = JSON.stringify({
+                'product_id': {{$product->id}},
+                'quantity': document.querySelector('.product-page-number-input').value,
+                'variants': variants
+            });
+
+            fetch('/add-to-basket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: _data
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.msg === 'ok') {
+                        location.href = '/winkelmand'
                     }
-                })
-            }
-        )
-        ;
+            })
+        });
     </script>
 @endsection

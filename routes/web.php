@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AddToBasketController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "show"])->name('main.home');
+Route::post('/add-to-basket', [AddToBasketController::class, 'store'])->name('basket.add');
 
 Route::get('/kleuren', function () {
     $pla = [

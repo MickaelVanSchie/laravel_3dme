@@ -17,6 +17,7 @@
         })(window, document, 'script', 'dataLayer', 'GTM-M3JB9R2');</script>
     <!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{--    <link rel="icon" type="image/png" href="{{ url_for('layout.static', filename='img/logo_square.png') }}">--}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://cdn.jsdeliver.net">

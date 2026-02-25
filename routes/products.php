@@ -13,9 +13,5 @@ Route::group(
     // Product details
     Route::get('product/{url}', [ProductDetailController::class, 'show'])->name('products.details');
 
-    Route::get('products/{id}/add_to_basket/{$quantity}', function ($id, $quantity) {
-        $product = Product::findOrFail($id);
-
-        return view('add_to_basket', ['g' => new g(), 'product' => $product]);
-    })->name('products.add_to_basket');
+    Route::post('products/{id}/add-to-basket/{quantity}', [AddToBasketController::class, 'store'])->name('products.add_to_basket.store');
 });
