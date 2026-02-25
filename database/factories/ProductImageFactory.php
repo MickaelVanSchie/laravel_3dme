@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\ProductCategory;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductImage>
  */
-class ProductCategoryFactory extends Factory
+class ProductImageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,11 +17,13 @@ class ProductCategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $mainCategoryIds = ProductCategory::all()->pluck('id')->toArray();
+        $productIds = Product::all()->pluck('id')->toArray();
         return [
-            'name' => fake()->text(10),
-            'description' => fake()->paragraph(),
-            'main_category_id' => fake()->randomElement($mainCategoryIds),
+            'product_id' => fake()->randomNumber($productIds),
+            'position' => fake()->randomNumber(2),
+            'url' => fake()->url(),
+            'updated_at' => 1,
+            'created_at' => 1,
         ];
     }
 }

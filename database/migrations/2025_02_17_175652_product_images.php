@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('product_id')->references('id')->on('products');
             $table->integer('position');
             $table->text('url');
-            $table->unsignedInteger('available_at');
+            $table->unsignedInteger('updated_at');
             $table->unsignedInteger('created_at');
             $table->unique(['product_id', 'position']);
         });

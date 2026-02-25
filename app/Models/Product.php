@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Product extends Model
 {
@@ -24,7 +26,8 @@ class Product extends Model
 
     public function image()
     {
-        return $this->images()->first()->url;
+        Log::info('Fetching product image for product ID: ' . $this->id . ' ' . $this->images()->first() );
+        return $this->images()->first();
     }
 
     public function stockText()

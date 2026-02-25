@@ -99,13 +99,13 @@
                     <div class="col-12 pt-5">
                         <h3>Gerelateerde producten</h3>
                         <div class="row">
-                            @foreach($product->related_products as $rp)
+                            @foreach($product->relatedProducts() as $rp)
                                 <div class="col-md-4 col-12">
-                                    <a href="{{ route('main.product', $rp->id) }}"
+                                    <a href="{{ url('product', $rp->id) }}"
                                        class="text-decoration-none">
                                         <div class="row">
                                             <div class="col-12">
-                                                <img src="{{ $rp->images[0]->http_url }}"
+                                                <img src="{{ $rp->image()->httpUrl() }}"
                                                      alt="" class="product-page-image">
                                             </div>
                                         </div>
