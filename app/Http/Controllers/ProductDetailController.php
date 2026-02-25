@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\g;
 use App\Models\Product;
-use g;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductDetailController extends Controller

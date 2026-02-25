@@ -3,95 +3,31 @@
 use App\Http\Controllers\AddToBasketController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "show"])->name('main.home');
 Route::post('/add-to-basket', [AddToBasketController::class, 'store'])->name('basket.add');
 
-Route::get('/kleuren', function () {
-    $pla = [
-        new mat('Zwart', 'black'),
-        new mat('Blauw', 'blue'),
-        new mat('Groen', 'green'),
-        new mat('Grijs', 'gray'),
-        new mat('Natuurlijk', 'natural'),
-        new mat('Oranje', 'orange'),
-        new mat('Paars', 'purple'),
-        new mat('Rood', 'red'),
-        new mat('Groenblauw', 'teal'),
-        new mat('Wit', 'white'),
-        new mat('Geel', 'yellow'),
-    ];
-    return view('colors', ['g' => new g(), 'pla' => $pla]);
-});
+Route::prefix('/')
+    ->name('main.')
+    ->group(function () {
+        // Static pages
+        Route::get('/kleuren', [PageController::class, 'colors'])->name('colors');
+        Route::get('/print-service', [PageController::class, 'printService'])->name('print-service');
+        Route::get('/materiaal-keuze', [PageController::class, 'materialChoice'])->name('material-choice');
 
-Route::get('/print_service', function () {
-    return view('realiseer_uw_idee', ["g" => new g(), 'ab_test' => false]);
-})->name('main.print_service');
+        // Request quotation
+        Route::get('/offerte-aanvragen', [PageController::class, 'quotation'])->name('quotation');
+        Route::post('/offerte-aanvragen', [PageController::class, 'quotationPost'])->name('quotation.post');
 
-Route::get('/materiaalkeuze', function () {
-    $materials = [
-        new material('PLA', 'Testdescription'),
-    ];
-    return view('material_choice', ["g" => new g(), 'materials' => $materials]);
-})->name('main.material_choice');
+        // Contact
+        Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+        Route::post('/contact', [PageController::class, 'contactPost'])->name('contact.post');
 
-Route::get('/contact', function () {
-    return view('contact', ["g" => new g()]);
-})->name('main.contact');
-
-Route::get('/offerte-aanvragen', function () {
-    return "hi";
-})->name('main.quotation');
-
-Route::get('/winkelmand', [BasketController::class, 'index'])->name('basket.index');
-
-
-class mat
-{
-    // Name maybe to generic
-    public string $color;
-    public string $material;
-
-    public function __construct(string $color, string $material)
-    {
-        $this->color = $color;
-        $this->material = $material;
-    }
-}
-
-class material
-{
-    public string $name;
-    public string $description;
-    public string $glassTransition;
-    public string $printTemp;
-
-    public function __construct(string $name, string $description)
-    {
-        $this->name = $name;
-        $this->description = $description;
-        $this->glassTransition = '110';
-        $this->printTemp = '220-240';
-    }
-}
-
-class g
-{
-
-    public $user = null;
-
-    public function __construct()
-    {
-        $this->user = new User();
-    }
-}
-
-class user
-{
-    public int $admin_level = 1;
-}
-
+        // Winkelmand
+        Route::get('/winkelmand', [BasketController::class, 'index'])->name('basket.index');
+    });
 
 // other routes
 //require __DIR__ . '/user/account.php';

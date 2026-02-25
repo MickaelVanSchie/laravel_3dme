@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-12">
                     <div class="text-center">
-                        <a href="{{ route('main.print_service') }}">
+                        <a href="{{ route('main.print-service') }}">
                             <div class="btn btn-primary p-3 m-2">Realiseer uw idee</div>
                         </a>
                         <a href="{{ route('main.contact') }}">

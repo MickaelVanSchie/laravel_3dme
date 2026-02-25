@@ -18,7 +18,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="{{ route('main.print_service') }}">Gratis offerte</a>
+                   href="{{ route('main.print-service') }}">Gratis offerte</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
