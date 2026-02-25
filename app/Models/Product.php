@@ -53,7 +53,7 @@ class Product extends Model
     {
         $variants = [];
         foreach ($this->variants as $variant) {
-        $variants[] = json_decode($variant);
+        $variants[] = new variant(json_decode($variant));
     }
         return $variants;
     }

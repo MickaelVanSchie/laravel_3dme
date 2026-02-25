@@ -7,27 +7,34 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BasketOrder extends Model
 {
-    //
+    protected $table = 'basketOrders';
     protected $fillable = [
-        'id',
-        'address_id',
-        'invoice_address_id',
+        'addressId',
+        'invoiceAddressId',
         'email',
         'name',
-        'last_name',
-        'phone_number',
-        'order_date', 'shipment_method',
-        'track_and_trace',
-        'mollie_payment_id',
-        'mollie_order_id',
+        'lastName',
+        'phoneNumber',
+        'orderDate',
+        'shipmentMethod',
+        'trackAndTrace',
+        'molliePaymentId',
+        'mollieOrderId',
         'shippingCostCents',
         'discountCents',
         'actiecode',
         'paymentFee',
-        'payment_method',
+        'paymentMethod',
         'status',
-        'invoice_id',
-        'invoice_sent',
+        'invoiceId',
+        'invoiceSent',
+    ];
+
+    protected $casts = [
+        'orderDate' => 'datetime',
+        'invoiceSent' => 'boolean',
+        'shippingcostCents' => 'integer',
+        'discountCents' => 'integer',
     ];
 
     public function user(): BelongsTo
@@ -61,7 +68,7 @@ class BasketOrder extends Model
                 'lineType' => 'fee',
                 'lineName' => 'Betaalingskosten',
                 'quantity' => 1,
-                'unitPriceCents' => $this->payment_fee,
+                'unitPriceCents' => $this->paymentFee,
                 'vatRate' => null
             ]);
         }
