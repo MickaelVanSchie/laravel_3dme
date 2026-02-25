@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MollieOrderLine extends Model
 {
-    //
+    protected $fillable = [
+        'lineType',
+        'lineName',
+        'quantity',
+        'unitPriceCents',
+        'vatrate'
+    ];
 }
