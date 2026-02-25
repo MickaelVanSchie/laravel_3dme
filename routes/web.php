@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddToBasketController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,9 @@ Route::get('/print_service', function () {
     return view('realiseer_uw_idee', ["g" => new g(), 'ab_test' => false]);
 })->name('main.print_service');
 
-Route::get('/materiaalkeuze', function() {
+Route::get('/materiaalkeuze', function () {
     $materials = [
-      new material('PLA', 'Testdescription'),
+        new material('PLA', 'Testdescription'),
     ];
     return view('material_choice', ["g" => new g(), 'materials' => $materials]);
 })->name('main.material_choice');
@@ -42,6 +43,8 @@ Route::get('/contact', function () {
 Route::get('/offerte-aanvragen', function () {
     return "hi";
 })->name('main.quotation');
+
+Route::get('/winkelmand', [BasketController::class, 'index'])->name('basket.index');
 
 
 class mat
@@ -57,7 +60,8 @@ class mat
     }
 }
 
-class material {
+class material
+{
     public string $name;
     public string $description;
     public string $glassTransition;
