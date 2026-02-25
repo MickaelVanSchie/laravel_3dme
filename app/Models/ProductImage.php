@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class ProductImage extends Model
 {
@@ -26,7 +25,6 @@ class ProductImage extends Model
 
     public function httpUrl(): string
     {
-        Log::info($this);
-        return $this->url;
+        return "https://placehold.co/600x400/EEE/31343C";
     }
 }

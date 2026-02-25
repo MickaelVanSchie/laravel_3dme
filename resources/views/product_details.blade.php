@@ -32,7 +32,7 @@
                                     @foreach($product->images as $image)
                                         <div class="swiper-slide">
                                             <img class="swiper-image"
-                                                 src="{{ $image->http_url }}"
+                                                 src="{{ $image->httpUrl() }}"
                                                  alt="{{ $product->name }}">
                                         </div>
                                     @endforeach
