@@ -57,15 +57,23 @@ class Product extends Model
     }
         return $variants;
     }
+
+    public function relatedProducts(): \Illuminate\Database\Eloquent\Collection
+    {
+        return Product::where('category_id', $this->category_id)
+            ->where('id', '!=', $this->id)
+            ->get();
+    }
 }
 
-class variant
+class Variant
 {
     public string $name;
+
     public function __construct(string $name, string $type, array $values, int $max_characters = 10)
     {
         $this->name = $name;
-        $this->type= $type;
+        $this->type = $type;
         $this->values = $values; // list of strings
         $this->max_characters = $max_characters;
     }

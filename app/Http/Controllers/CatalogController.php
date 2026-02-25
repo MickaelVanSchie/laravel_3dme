@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\MainCategory;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use g;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class CatalogController extends Controller

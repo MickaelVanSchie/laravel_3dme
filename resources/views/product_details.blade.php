@@ -95,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                @if($product->related_products)
+                @if($product->relatedProducts())
                     <div class="col-12 pt-5">
                         <h3>Gerelateerde producten</h3>
                         <div class="row">
