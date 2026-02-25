@@ -26,6 +26,13 @@ Route::get('/print_service', function () {
     return view('realiseer_uw_idee', ["g" => new g(), 'ab_test' => false]);
 })->name('main.print_service');
 
+Route::get('/materiaalkeuze', function() {
+    $materials = [
+      new material('PLA', 'Testdescription'),
+    ];
+    return view('material_choice', ["g" => new g(), 'materials' => $materials]);
+})->name('main.material_choice');
+
 Route::get('/contact', function () {
     return view('contact', ["g" => new g()]);
 })->name('main.contact');
@@ -37,6 +44,7 @@ Route::get('/offerte-aanvragen', function () {
 
 class mat
 {
+    // Name maybe to generic
     public string $color;
     public string $material;
 
@@ -44,6 +52,21 @@ class mat
     {
         $this->color = $color;
         $this->material = $material;
+    }
+}
+
+class material {
+    public string $name;
+    public string $description;
+    public string $glassTransition;
+    public string $printTemp;
+
+    public function __construct(string $name, string $description)
+    {
+        $this->name = $name;
+        $this->description = $description;
+        $this->glassTransition = '110';
+        $this->printTemp = '220-240';
     }
 }
 
