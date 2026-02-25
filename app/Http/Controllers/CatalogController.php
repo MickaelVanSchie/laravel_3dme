@@ -20,9 +20,9 @@ class CatalogController extends Controller
             'catalog',
             [
                 'g' => new g(),
-                'products' => Product::where('category_id', $category->id)->get(),
-                'main_categories' => MainCategory::where('id', $category->main_category_id)->get(),
-                'product_categories' => ProductCategory::where('main_category_id', $category->main_category_id)->get(),
+                'products' => Product::all(),
+                'main_categories' => MainCategory::all(),
+                'product_categories' => ProductCategory::all(),
                 'listed_products' => Product::where('category_id', $category->id)->get()->where('active', true),
             ]
         );
@@ -30,16 +30,13 @@ class CatalogController extends Controller
 
     public function index(): View
     {
-        $products = Product::all();
-        $main_categories = MainCategory::all();
-        $product_categories = ProductCategory::all();
         return view(
             'catalog',
             [
                 'g' => new g(),
-                'products' => $products,
-                'main_categories' => $main_categories,
-                'product_categories' => $product_categories,
+                'products' => Product::all(),
+                'main_categories' => MainCategory::all(),
+                'product_categories' => ProductCategory::all(),
                 'listed_products' => Product::where('active', true)->get(),
             ]
         );
