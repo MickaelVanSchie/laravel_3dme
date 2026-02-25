@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BasketOrder extends Model
 {
-    protected $table = 'basketOrders';
+//    protected $table = 'basketOrders';
     protected $fillable = [
         'addressId',
         'invoiceAddressId',
