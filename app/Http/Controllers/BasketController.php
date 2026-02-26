@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\g;
-use Illuminate\Http\Request;
+use App\Models\Product;
 use Illuminate\Support\Facades\Log;
 
 class BasketController extends Controller
@@ -11,8 +11,13 @@ class BasketController extends Controller
     public function index()
     {
         $basket = session('basket');
-        Log::debug('Basket content:', ['basket' => $basket]);
 
-        return view('basket', ['basket' => $basket, 'g' => new g()]);
+        $productIds = collect($basket)->pluck('productId')->unique();
+        $products = Product::whereIn('id', $productIds)->get()->keyBy('id');
+        Log::info($products);
+
+        $total = 0;
+
+        return view('checkout/basket', ['basket' => $basket, 'g' => new g(), 'products' => $products, 'total' => $total]);
     }
 }
