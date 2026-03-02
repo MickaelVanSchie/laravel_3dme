@@ -29,17 +29,14 @@
                             </div>
                         </div>
                         @foreach($basket as $basketItem)
-                            @php
-                                $product = $products[$basketItem->productId];
-                            @endphp
                             <div class="col-md-12 mb-2">
                                 <div class="row">
                                     <div class="col-md-2 col-2">
                                         <img class='basket-product-img'
-                                             src="{{ $product->image()->httpUrl() }}">
+                                             src="{{ $basketItem->product->image()->httpUrl() }}">
                                     </div>
                                     <div class="col-md-7 col-4">
-                            <span>{{ $product->name }}@if($basketItem->variants)
+                            <span>{{ $basketItem->product->name }}@if($basketItem->variants)
                                     - @foreach($basketItem->variants as $variant)
                                         {{ $variant->name }}: {{ $variant->value }}@if(!$loop->last)
                                             ,
@@ -48,9 +45,9 @@
                                 @endif</span>
                                     </div>
                                     <div class="col-md-1 col-2 text-right">{{ $basketItem->quantity }}</div>
-                                    <div class="col-md-1 col-2 text-right">{{ euro($basketItem->total_price) }}</div>
+                                    <div class="col-md-1 col-2 text-right">@currency($basketItem->totalPrice)</div>
                                     <div class="col-md-1 col-2 text-right"><a
-                                            href="remove_from_cart/{{ $basketItem->order_id }}"><i
+                                            href="remove_from_cart/{{ $basketItem->orderId }}"><i
                                                 class="fa fa-trash" aria-hidden="true"></i></a></div>
                                 </div>
                             </div>
@@ -62,20 +59,20 @@
                             <div class="row">
                                 <div class="col-6">Verzendkosten:</div>
                                 <div class="col-6 text-right">
-                                    {{ euro($total->shipping_cost_cents) }}
+                                    @currency($total->shippingCost)
                                 </div>
                                 <div class="col-6 font-weight-bold">
                                     Totaal:
                                 </div>
                                 <div class="col-6 font-weight-bold text-right">
-                                    {{ euro($total->price) }}
+                                    @currency($total->total)
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     Waarvan BTW:
                                 </div>
-                                <div class="col-6 text-right">{{ euro($total->vat) }}</div>
+                                <div class="col-6 text-right">@currency($total->vat)</div>
                             </div>
                         </div>
                     </div>
