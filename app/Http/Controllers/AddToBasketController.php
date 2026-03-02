@@ -15,7 +15,6 @@ class AddToBasketController extends Controller
     {
 
         if (!$request->hasValidSignature() && !$request->header('X-CSRF-TOKEN')) {
-            Log::info("I got here 2");
             return response()->json(['error' => 'CSRF token mismatch'], 419);
         }
 
@@ -26,7 +25,6 @@ class AddToBasketController extends Controller
             'product_id' => 'required|integer',
             'quantity' => 'required|integer|min:1'
         ]);
-
 
         $basket = Session::get('basket', []);
         $productId = $validated['product_id'];
@@ -53,8 +51,6 @@ class AddToBasketController extends Controller
             ];
             $basket[] = $basketItem;
         }
-
-        Log::info($basket);
 
         Session::put('basket', $basket);
 

@@ -26,7 +26,6 @@ class Product extends Model
 
     public function image()
     {
-        Log::info('Fetching product image for product ID: ' . $this->id . ' ' . $this->images()->first() );
         return $this->images()->first();
     }
 
