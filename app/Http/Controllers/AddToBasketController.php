@@ -35,9 +35,9 @@ class AddToBasketController extends Controller
 
         $productFound = false;
 
-        foreach ($basket as $key => $value) {
-            if ($value['productId'] == $productId) {
-                $basket[$key]['quantity'] += $quantity;
+        foreach ($basket as $basketItem) {
+            if ($basketItem->productId == $productId) {
+                $basketItem->quantity += $quantity;
                 $productFound = true;
                 break;
             }
