@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddToBasketController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\CmsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +29,12 @@ Route::prefix('/')
 
         // Winkelmand
         Route::get('/winkelmand', [BasketController::class, 'index'])->name('basket.index');
+    });
+
+Route::prefix('/cms')
+    ->name('cms.')->middleware('auth', 'verified')->group(function () {
+        // CMS endpoints here
+        Route::get('/', [CmsController::class, "dashboard"])->name('home')->middleware('check-role:2');
     });
 
 Route::get('/dashboard', function () {
