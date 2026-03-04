@@ -11,7 +11,7 @@ class CmsController extends Controller
      */
     public function dashboard()
     {
-        return "Hi";
+        return View("cms/dashboard");
     }
 
     /**
