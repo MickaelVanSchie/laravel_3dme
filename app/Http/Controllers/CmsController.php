@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CmsController extends Controller
 {
@@ -11,7 +12,32 @@ class CmsController extends Controller
      */
     public function dashboard()
     {
-        return View("cms/dashboard");
+        $basketOrders = [
+            (object)[
+                "id" => 1,
+                "name" => "Mickael",
+                "status" => "paid",
+                "email" => "some@email.com",
+                "orderDate" => "2024-01-01",
+            ],
+            (object)[
+                "id" => 1,
+                "name" => "Mickael",
+                "status" => "paid",
+                "email" => "some@email.com",
+                "orderDate" => "2024-01-01",
+            ]
+        ];
+
+        $totalOrders = count($basketOrders);
+
+        return View("cms/dashboard", [
+            "direction" => "asc",
+            "sort" => "name",
+            "page" => 1,
+            "totalOrders" => $totalOrders,
+            "basketOrders" => $basketOrders,
+        ]);
     }
 
     /**

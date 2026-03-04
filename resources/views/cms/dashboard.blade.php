@@ -1,85 +1,58 @@
-{% extends 'cms/master.html' %}
-
-{% macro statusbutton(status) %}
-<div class="badge text-white text-center col-md-12
-    {% if status in ['paid', 'completed', 'shipped'] %}text-bg-success
-    {% elif status in ['new', 'hold'] %}text-bg-warning
-    {% elif status in ['cancelled'] %}text-bg-danger{% endif %}
-">
-    {{ status }}
-</div>
-{% endmacro %}
-
-{% macro sort_button(text, sort_property) %}
-{% if sort_property == sorting %}
-{% set _direction = 'asc' if direction == 'desc' else 'desc' %}
-{% endif %}
-<a href="{{ url("cms.dashboard", sorting=sort_property, direction=_direction, page=page) }}">{{ text }}</a>
-{% endmacro %}
-
-{% macro page_button(page_num) %}
-{% if page_num > 0 and page_num < total_orders / 35 %}
-<a href="{{ url('cms.dashboard', page=page_num, sorting=sorting, direction=direction) }}"
-   class="btn btn-primary col-1">{{ page_num }}</a>
-{% endif %}
-{% endmacro %}
-
+@extends('cms.master')
 @section('pagecontent')
     <div class="row">
-        {% if page > 1 %}
-        <a href="{{ url('cms.dashboard', $page=page - 1, sorting=sorting, direction=direction) }}"
-           class="btn btn-primary col-2"><</a>
-        {% endif %}
-        {{ page_button(page - 3) }}
-        {{ page_button(page - 2) }}
-        {{ page_button(page - 1) }}
-        <div class="col-1 btn btn-secondary">{{ page }}</div>
-        {{ page_button(page + 1) }}
-        {{ page_button(page + 2) }}
-        {{ page_button(page + 3) }}
-        {% if page < total_orders / 35 %}
-        <a href="{{ url_for('cms.dashboard', page=page + 1, sorting=sorting, direction=direction) }}"
-           class="btn btn-primary col-2">></a>
-        {% endif %}
+        @if($page > 1)
+            <a href="{{ url('cms.dashboard', $page, $sorting, $direction) }}"><</a>
+        @endif
+        <x-page-button-component :pageNum="$page - 3" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button-component :pageNum="$page - 2" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button-component :pageNum="$page - 1" :totalOrders="$totalOrders" :direction="$direction"/>
+        <div class="col-1 btn btn-secondary">{{$page}}</div>
+        <x-page-button-component :pageNum="$page + 1" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button-component :pageNum="$page + 2" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button-component :pageNum="$page + 3" :totalOrders="$totalOrders" :direction="$direction"/>
+        @if($page < $totalOrders / 35)
+            <a href="{{ url('cms.dashboard', $page + 1, $sorting, $direction) }}" class="btn btn-primary col-2">></a>
+        @endif
     </div>
     <div class="row ">
         <div class="col-1">
-            {{ sort_button("OrderID", "id") }}
+            <x-sort-button-component text="Order ID" sortProperty="id" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-2">
-            {{ sort_button("Status", "status") }}
+            <x-sort-button-component text="Status" sortProperty="status" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-4">
-            {{ sort_button("Email", "email") }}
+            <x-sort-button-component text="Email" sortProperty="email" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-2">
-            {{ sort_button("Orderdatum", "order_date") }}
+            <x-sort-button-component text="Orderdatum" sortProperty="orderDate" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-2">
             Prijs
         </div>
     </div>
-    {% if g.user.admin_level >= 2 %}
-    {% for basket_order in basket_orders %}
-    <a href="/cms/order_details/{{ basket_order.id }}">
-        <div class="row   {{ loop.cycle('bg-lightgray', '') }}">
+{{--    {% if g.user.admin_level >= 2 %}--}}
+    @foreach($basketOrders as $index => $basketOrder)
+    <a href="/cms/order_details/{{ $basketOrder->id }}">
+        <div class="row {{ $index % 2 == 0 ? 'bg-lightgray' : '' }}">
             <div class="col-1">
-                {{ basket_order.id }}
+                {{ $basketOrder->id }}
             </div>
             <div class="col-2">
-                {{ statusbutton(basket_order.status) }}
+                <x-status-button-component :status="$basketOrder->status"></x-status-button-component>
             </div>
             <div class="col-4">
-                {{ basket_order.email }}
+                {{ $basketOrder->email }}
             </div>
             <div class="col-2">
-                {{ basket_order.order_date.strftime('%d-%m-%Y') }}
+                {{ $basketOrder->orderDate }}
             </div>
             <div class="col-2">
-                {{ basket_order.price_list.total_cost_cents | euro }}
+{{--                @currency($basketOrder->price_list->total_cost_cents)--}}
             </div>
         </div>
     </a>
-    {% endfor %}
-    {% endif %}
+    @endforeach
+{{--    {% endif %}--}}
 @endsection
