@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SortButtonComponent extends Component
+class SortButton extends Component
 {
     /**
      * Create a new component instance.
@@ -29,6 +29,6 @@ class SortButtonComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sort-button-component');
+        return view('components.sort-button');
     }
 }

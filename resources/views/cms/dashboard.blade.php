@@ -4,29 +4,29 @@
         @if($page > 1)
             <a href="{{ url('cms.dashboard', $page, $sorting, $direction) }}"><</a>
         @endif
-        <x-page-button-component :pageNum="$page - 3" :totalOrders="$totalOrders" :direction="$direction"/>
-        <x-page-button-component :pageNum="$page - 2" :totalOrders="$totalOrders" :direction="$direction"/>
-        <x-page-button-component :pageNum="$page - 1" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button :pageNum="$page - 3" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button :pageNum="$page - 2" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button :pageNum="$page - 1" :totalOrders="$totalOrders" :direction="$direction"/>
         <div class="col-1 btn btn-secondary">{{$page}}</div>
-        <x-page-button-component :pageNum="$page + 1" :totalOrders="$totalOrders" :direction="$direction"/>
-        <x-page-button-component :pageNum="$page + 2" :totalOrders="$totalOrders" :direction="$direction"/>
-        <x-page-button-component :pageNum="$page + 3" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button :pageNum="$page + 1" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button :pageNum="$page + 2" :totalOrders="$totalOrders" :direction="$direction"/>
+        <x-page-button :pageNum="$page + 3" :totalOrders="$totalOrders" :direction="$direction"/>
         @if($page < $totalOrders / 35)
             <a href="{{ url('cms.dashboard', $page + 1, $sorting, $direction) }}" class="btn btn-primary col-2">></a>
         @endif
     </div>
     <div class="row ">
         <div class="col-1">
-            <x-sort-button-component text="Order ID" sortProperty="id" :sortDirection="$direction" :pageNum="$page"/>
+            <x-sort-button text="Order ID" sortProperty="id" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-2">
-            <x-sort-button-component text="Status" sortProperty="status" :sortDirection="$direction" :pageNum="$page"/>
+            <x-sort-button text="Status" sortProperty="status" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-4">
-            <x-sort-button-component text="Email" sortProperty="email" :sortDirection="$direction" :pageNum="$page"/>
+            <x-sort-button text="Email" sortProperty="email" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-2">
-            <x-sort-button-component text="Orderdatum" sortProperty="orderDate" :sortDirection="$direction" :pageNum="$page"/>
+            <x-sort-button text="Orderdatum" sortProperty="orderDate" :sortDirection="$direction" :pageNum="$page"/>
         </div>
         <div class="col-2">
             Prijs
@@ -40,7 +40,7 @@
                 {{ $basketOrder->id }}
             </div>
             <div class="col-2">
-                <x-status-button-component :status="$basketOrder->status"></x-status-button-component>
+                <x-status-button :status="$basketOrder->status"></x-status-button>
             </div>
             <div class="col-4">
                 {{ $basketOrder->email }}

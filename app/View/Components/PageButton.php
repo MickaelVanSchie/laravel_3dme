@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PageButtonComponent extends Component
+class PageButton extends Component
 {
     public int $pageNum;
     public int $totalOrders;
@@ -21,6 +21,6 @@ class PageButtonComponent extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.page-button-component');
+        return view('components.page-button');
     }
 }
