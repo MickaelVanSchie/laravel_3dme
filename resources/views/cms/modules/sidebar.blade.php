@@ -1,50 +1,43 @@
-{% macro category_header(name) %}
-<div class="row text-white bg-lightblue mt-1 p-1 pl-3">
-    <span class="font-weight-bold">{{ name }}</span>
-</div>
-{% endmacro %}
-{% macro url(name, url) %}
-<div class="row bg-disabled bg-dark p-1 pl-3">
-    <a class="cms-url" href="/cms/{{ url }}">{{ name }}</a>
-</div>
-{% endmacro %}
-{{ category_header('Dashboard') }}
-{% if g.user.admin_level >= 2 %}
-{{ url('Bestellingen', 'dashboard') }}
-{{ url('Track&Trace mails', 'trackandtrace') }}
-{{ url('Instellingen verzending', 'shipment_settings') }}
-{{ url('Offerte aanvragen', 'quotations') }}
-{% endif %}
+@if($g->user->role >= 2)
+    <x-category-header name="Dashboard"></x-category-header>
+    <x-category-url name="Bestellingen" url="dashboard"></x-category-url>
+    <x-category-url name="Track&Trace mails" url="trackandtrace"></x-category-url>
+    <x-category-url name="Instellingen verzending" url="shipment-settings"></x-category-url>
+    <x-category-url name="Offerte aanvragen" url="quotations"></x-category-url>
+@endif
 
-{% if g.user.admin_level >= 2 %}
-{{ category_header('Producten') }}
-{{ url('Alle producten', 'products') }}
-{% endif %}
+@if($g->user->role >= 2)
+    <x-category-header name="Producten"></x-category-header>
+    <x-category-url name="Alle producten" url="products"></x-category-url>
+@endif
 
-{% if g.user.admin_level >= 2 %}
-{{ category_header('Gebruikers') }}
-{{ url('Alle gebruikers', 'users') }}
-{% endif %}
+@if($g->user->role >= 2)
+    {{-- This category is mainly to prevent spam filling up the contact form and emails --}}
+    {{-- Basic things like pr0n, crypto and financial related messages will automatically be filtered with these settings  --}}
+    <x-category-header name="Spam preventie"></x-category-header>
+    <x-category-url name="Verbannen woorden" url="banned-word-list"></x-category-url>
+    <x-category-url name="Verbannen ip's" url="banned-ip-list"></x-category-url>
+    <x-category-url name="Verbannen berichten" url="banned-message-list"></x-category-url>
+    <x-category-url name="Verbannen woorden" url="banned-word-list"></x-category-url>
+@endif
 
-{% if g.user.admin_level >= 2 %}
-{{ category_header('Verbannen items') }}
-{{ url('Verbannen woorden', 'banned_words_list') }}
-{{ url('Verbannen ip\'s', 'banned_ip_list') }}
-{{ url('Verbannen berichten', 'banned_message_list') }}
-{% endif %}
+@if($g->user->role >= 2)
+    <x-category-header name="Gebruikers"></x-category-header>
+    <x-category-url name="Alle gebruikers" url="all-users"></x-category-url>
+@endif
 
-{% if g.user.admin_level >= 2 %}
-{{ category_header('Reviews') }}
-{{ url('Reviews', 'reviews') }}
-{% endif %}
+@if($g->user->role >= 2)
+    <x-category-header name="Reviews"></x-category-header>
+    <x-category-url name="Manage reviews" url="reviews"></x-category-url>
+@endif
 
-{% if g.user.admin_level >= 1 %}
-{{ category_header('Blog') }}
-{{ url('Blog Posts', 'blogposts') }}
-{% endif %}
+@if($g->user->role >= 1)
+    <x-category-header name="Blog"></x-category-header>
+    <x-category-url name="Blog posts" url="blogposts"></x-category-url>
+@endif
 
+@if($g->user->role >= 1)
+    <x-category-header name="Emails"></x-category-header>
+    <x-category-url name="Email queue" url="emails"></x-category-url>
+@endif
 
-{%  if g.user.admin_level >= 1 %}
-{{ category_header("Emails") }}
-{{ url("Email Queue", "emails") }}
-{% endif %}

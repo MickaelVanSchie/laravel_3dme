@@ -32,7 +32,7 @@
             Prijs
         </div>
     </div>
-{{--    {% if g.user.admin_level >= 2 %}--}}
+    @if($g->user->role >= 2)
     @foreach($basketOrders as $index => $basketOrder)
     <a href="/cms/order_details/{{ $basketOrder->id }}">
         <div class="row {{ $index % 2 == 0 ? 'bg-lightgray' : '' }}">
@@ -54,5 +54,5 @@
         </div>
     </a>
     @endforeach
-{{--    {% endif %}--}}
+   @endif
 @endsection

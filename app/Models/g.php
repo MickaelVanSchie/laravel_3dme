@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class g extends Model
 {
@@ -11,6 +12,6 @@ class g extends Model
 
     public function __construct()
     {
-        $this->user = new User();
+        $this->user = Auth::user();
     }
 }

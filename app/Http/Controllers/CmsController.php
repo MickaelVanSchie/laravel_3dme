@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\g;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -32,6 +33,7 @@ class CmsController extends Controller
         $totalOrders = count($basketOrders);
 
         return View("cms/dashboard", [
+            "g" => new g(),
             "direction" => "asc",
             "sort" => "name",
             "page" => 1,
