@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         MainCategory::factory(3)->create()->each(function ($mainCategory) {
             ProductCategory::factory(2)->create(['main_category_id' => $mainCategory->id])->each(function ($productCategory) {
                 Product::factory(5)->create(['category_id' => $productCategory->id])->each(function ($product) {
-                    ProductImage::factory(5)->create(['product_id' => $product->id]);
+                    ProductImage::factory(2)->create(['product_id' => $product->id]);
                 });
             });
         });

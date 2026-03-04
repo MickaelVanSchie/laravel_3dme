@@ -37,7 +37,7 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                @if($product->images && count($product->images) > 1)
+                                @if(count($product->images) > 1)
                                     <div class="swiper-pagination"></div>
                                     <div class="swiper-button-prev"></div>
                                     <div class="swiper-button-next"></div>
@@ -55,7 +55,7 @@
                                         <input type="text" name="variant_{{ $variant->name }}"
                                                id="variant_{{ $variant->name }}" class="form-control variant-selection"
                                                data-variant="{{ $variant->name }}" maxlength="10"
-                                               @if(in_array($preset_keys, $variant->name)) value="{{$default_selection[$variant->name]}}" @endif
+                                               value="{{ $default_selection[$variant->name] ?? '' }}"
                                         >
                                     @else
                                         <select name="variant_{{ $variant->name }}" id="variant_{{ $variant->name }}"
@@ -63,7 +63,7 @@
                                                 data-variant="{{ $variant->name }}">
                                             @foreach($variant->value as $value)
                                                 <option value="{{ $value }}"
-                                                        @if(in_array($preset_keys, $variant->name) && $default_selection[$variant->name] == $value) selected @endif
+                                                        {{(in_array($preset_keys, $variant->name) &&  $default_selection[$variant->name] == $value) ? 'selected' : '' }}
                                                 >{{ $value }}</option>
                                             @endforeach
                                         </select>
@@ -76,12 +76,7 @@
                                            type="number" value="1" min="1">
                                 </div>
                                 <div class="col-md-9 pt-2">
-                                    <div
-                                        @if($product->stock == 0)
-                                            class="btn btn-primary add-to-basket disabled"
-                                        @else
-                                            class="btn btn-primary add-to-basket"
-                                        @endif
+                                    <div class="btn btn-primary add-to-basket {{$product->stock == 0 ? 'disabled' : ''}}"
                                         id="add-to-basket">
                                         Toevoegen aan winkelmand
                                     </div>
@@ -151,6 +146,7 @@
         let addToBasketButton = document.getElementById('add-to-basket');
 
         addToBasketButton.addEventListener('click', function () {
+            if (this.classList.contains('disabled')) return;
             let variants = [];
             let variantInputs = document.getElementsByClassName('variant-selection');
             Array.from(variantInputs).forEach((variantInput) => {

@@ -19,7 +19,7 @@ class ProductImageFactory extends Factory
     {
         $productIds = Product::all()->pluck('id')->toArray();
         return [
-            'product_id' => fake()->randomNumber($productIds),
+            'product_id' => fake()->randomElement($productIds),
             'position' => fake()->randomNumber(2),
             'url' => fake()->url(),
             'updated_at' => 1,
