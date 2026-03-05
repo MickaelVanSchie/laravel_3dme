@@ -29,6 +29,7 @@ Route::prefix('/')
 
         // Winkelmand
         Route::get('/winkelmand', [BasketController::class, 'index'])->name('basket.index');
+        Route::get('/remove-from-cart/{id}', [BasketController::class, 'remove'])->name('basket.remove');
     });
 
 Route::prefix('/cms')

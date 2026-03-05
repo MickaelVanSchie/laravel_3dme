@@ -47,7 +47,7 @@
                                     <div class="col-md-1 col-2 text-right">{{ $basketItem->quantity }}</div>
                                     <div class="col-md-1 col-2 text-right">@currency($basketItem->totalPrice)</div>
                                     <div class="col-md-1 col-2 text-right"><a
-                                            href="remove_from_cart/{{ $basketItem->orderId }}"><i
+                                            href="remove-from-cart/{{ $basketItem->orderId }}"><i
                                                 class="fa fa-trash" aria-hidden="true"></i></a></div>
                                 </div>
                             </div>

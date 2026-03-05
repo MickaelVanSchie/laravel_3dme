@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\g;
 use App\Models\Product;
-use Illuminate\Support\Facades\Log;
 
 class BasketController extends Controller
 {
@@ -38,5 +37,21 @@ class BasketController extends Controller
 
 
         return view('checkout/basket', ['basket' => $b, 'g' => new g(), 'total' => $total]);
+    }
+
+    public function remove($id)
+    {
+        $basket = session('basket', []);
+
+        foreach ($basket as $index => $item) {
+            if ($item->orderId == $id) {
+                unset($basket[$index]);
+            }
+            break;
+        }
+
+        session(['basket' => $basket]);
+
+        return redirect()->route('main.basket.index');
     }
 }
