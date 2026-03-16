@@ -14,13 +14,11 @@ class BasketOrderFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): arraygit
+    public function definition(): array
     {
         return [
-            'id' => fake()->id(),
             'name' => fake()->text(15),
             'description' => fake()->paragraph(),
-            'category_id' => fake()->randomElement($categoryIds),
             'price' => fake()->randomNumber(3),
             'production_price' => fake()->randomNumber(2),
             'minimum_selling_price' => fake()->randomNumber(2),
