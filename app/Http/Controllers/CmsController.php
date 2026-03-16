@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BasketOrder;
 use App\Models\g;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,22 +14,8 @@ class CmsController extends Controller
      */
     public function dashboard()
     {
-        $basketOrders = [
-            (object)[
-                "id" => 1,
-                "name" => "Mickael",
-                "status" => "paid",
-                "email" => "some@email.com",
-                "orderDate" => "2024-01-01",
-            ],
-            (object)[
-                "id" => 1,
-                "name" => "Mickael",
-                "status" => "paid",
-                "email" => "some@email.com",
-                "orderDate" => "2024-01-01",
-            ]
-        ];
+
+        $basketOrders = BasketOrder::all();
 
         $totalOrders = count($basketOrders);
 

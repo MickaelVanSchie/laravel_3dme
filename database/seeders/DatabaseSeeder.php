@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BasketOrder;
 use App\Models\MainCategory;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -29,6 +30,8 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         Review::factory(5)->create();
+
+        BasketOrder::factory(5)->create();
 
 
         User::factory()->create([
