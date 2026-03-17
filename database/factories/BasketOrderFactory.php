@@ -17,18 +17,25 @@ class BasketOrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->text(15),
-            'description' => fake()->paragraph(),
-            'price' => fake()->randomNumber(3),
-            'production_price' => fake()->randomNumber(2),
-            'minimum_selling_price' => fake()->randomNumber(2),
-            'stock' => fake()->randomNumber(2),
-            'shipment_type' => fake()->randomElement(["parcel", "mailbox"]),
-            'image' => fake()->url(),
-            'active' => fake()->boolean(),
-            'variants' => '',
-            'related_products' => '',
-            'google_feed' => fake()->boolean(),
+            'addressId' => null,
+            'invoiceAddressId' => null,
+            'email' => fake()->email(),
+            'name' => fake()->firstName(),
+            'lastName' => fake()->lastName(),
+            'phoneNumber' => fake()->phoneNumber(),
+            'orderDate' => fake()->dateTimeBetween('-1 year', 'now'),
+            'shippingMethod' => fake()->randomElement(['PostNL', 'DHL', 'UPS']),
+            'trackAndTrace' => fake()->optional()->uuid(),
+            'molliePaymentId' => fake()->optional()->regexify('tr_[A-Za-z0-9]{10}'),
+            'mollieOrderId' => fake()->optional()->regexify('ord_[A-Za-z0-9]{10}'),
+            'shippingCostCents' => fake()->numberBetween(0, 1000),
+            'discountCents' => fake()->numberBetween(0, 500),
+            'actiecode' => fake()->optional()->regexify('[A-Z0-9]{8}'),
+            'paymentFee' => fake()->numberBetween(0, 100),
+            'paymentMethod' => fake()->randomElement(['ideal', 'creditcard', 'bancontact', 'paypal']),
+            'status' => fake()->randomElement(['pending', 'processing', 'completed', 'cancelled']),
+            'invoiceId' => fake()->optional()->randomNumber(6),
+            'invoiceSent' => fake()->boolean(),
         ];
     }
 

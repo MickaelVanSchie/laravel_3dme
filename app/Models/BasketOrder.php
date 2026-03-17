@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BasketOrder extends Model
 {
+    protected $table = 'basket_order';
     use hasFactory;
+
 //    protected $table = 'basketOrders';
     protected $fillable = [
         'addressId',
@@ -18,7 +20,7 @@ class BasketOrder extends Model
         'lastName',
         'phoneNumber',
         'orderDate',
-        'shipmentMethod',
+        'shippingMethod',
         'trackAndTrace',
         'molliePaymentId',
         'mollieOrderId',
