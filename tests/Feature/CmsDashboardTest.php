@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Address;
 use App\Models\BasketOrder;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -22,7 +23,10 @@ class CmsDashboardTest extends TestCase
     public function test_authenticated_user_with_cms_access(): void
     {
         $user = User::factory()->create(['role' => 2]);
-        $basketOrders = BasketOrder::factory()->count(3)->create();
+        $basketOrders = BasketOrder::factory()->count(3)->create([
+            'addressId' => Address::factory(),
+            'invoiceAddressId' => Address::factory()
+        ]);
 
         $response = $this->actingAs($user)->get('/cms/dashboard');
 
